@@ -352,7 +352,7 @@ Gfx* sPlayerRightHandOotDLs[] = {
 Gfx* sPlayerRightHandHookshotDLs[] = {
     gLinkAdultRightHandHoldingHookshotNearDL,
     gLinkChildRightHandNearDL,
-    gLinkAdultRightHandHoldingHookshotNearDL, // The 'far' display list exists but is not used
+    gLinkAdultRightHandHoldingHookshotNearDL, // The 'far' display list exists but is not used here
     gLinkChildRightHandFarDL,
 };
 
@@ -1403,7 +1403,7 @@ Color_RGB8 sBottleColors[] = {
     { 80, 80, 255 },   // Fairy
 };
 
-Vec3f D_80126128 = { 398.0f, 1419.0f, 244.0f };
+Vec3f sLeftHandArrowVec3 = { 398.0f, 1419.0f, 244.0f }; //Positions the arrow in Link's left hand
 
 BowSlingshotStringData sBowSlingshotStringData[] = {
     { gLinkAdultBowStringDL, { 0.0f, -360.4f, 0.0f } },       // Bow
@@ -1503,7 +1503,7 @@ void Player_PostLimbDrawGameplay(PlayState* play, s32 limbIndex, Gfx** dList, Ve
         if (this->actor.scale.y >= 0.0f) {
             if (!Player_HoldsHookshot(this) && ((hookedActor = this->heldActor) != NULL)) {
                 if (this->stateFlags1 & PLAYER_STATE1_9) {
-                    Matrix_MultVec3f(&D_80126128, &hookedActor->world.pos);
+                    Matrix_MultVec3f(&sLeftHandArrowVec3, &hookedActor->world.pos);
                     Matrix_RotateZYX(0x69E8, -0x5708, 0x458E, MTXMODE_APPLY);
                     Matrix_Get(&sp14C);
                     Matrix_MtxFToYXZRotS(&sp14C, &hookedActor->world.rot, 0);
